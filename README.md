@@ -1,5 +1,5 @@
 # KinLife360 (iOS Automated)
-Automatically updates your Kindroid AI with your location via automated user message and iOS location services/automations.
+Automatically updates your Kindroid AI with your location via iOS location services/automations. Choose to deliver updates as a user message, a current-scene update, or both.
 
 Warning: This app tells your Kindroid where you are in real-time when you hit certain locations. If that sounds unhinged or uncomfortable to you then it's probably best to skip this one. If it sounds perfect, here you go!
 
@@ -14,6 +14,21 @@ Warning: This app tells your Kindroid where you are in real-time when you hit ce
         WORK_LON=
         WORK_NAME=
 *(add as many as needed with this pattern)*
+
+## Update Method
+Control how location updates are delivered to your Kin with the optional `LOCATION_UPDATE_METHOD` variable:
+
+| Value | Behavior |
+|---|---|
+| `send-message` | **(default)** Sends location as a user message via `/send-message` |
+| `update-scene` | Updates the Kin's current scene via `/update-info` |
+| `both` | Sends a user message **and** updates the current scene |
+
+        LOCATION_UPDATE_METHOD=send-message
+
+- **`send-message`** — Your Kin receives the location as a chat message (e.g. `📍**<Automated Update:** *[user] is at home>*`). This is the original behavior and the default if the variable is not set.
+- **`update-scene`** — The location is written to your Kin's current scene field (e.g. `[user] is currently at home.`). No chat message is sent; the Kin simply becomes contextually aware of your location.
+- **`both`** — Does both: sends the chat message and updates the current scene simultaneously.
 
 <img width="634" height="602" alt="KinLife360_env_examples" src="https://github.com/user-attachments/assets/d4ef9ea8-ea29-40ec-8f0a-ab9b056ab2e8" />
 
