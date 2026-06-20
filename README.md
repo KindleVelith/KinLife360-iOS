@@ -5,7 +5,7 @@ Warning: This app tells your Kindroid where you are in real-time when you hit ce
 
 ## Required
 - KINDROID_API_KEY - Your Kindroid API key
-- KINDROID_AI_ID - Kin's AI ID
+- KINDROID_AI_ID - Kin's AI ID. To update more than one Kin, provide a comma-separated list of AI IDs (e.g. `id1,id2,id3`). Each Kin receives the same location update.
 - Location mappings *(customizable but here's examples)*:
         HOME_LAT=
         HOME_LON=
@@ -16,6 +16,17 @@ Warning: This app tells your Kindroid where you are in real-time when you hit ce
 *(add as many as needed with this pattern)*
 
 <img width="634" height="602" alt="KinLife360_env_examples" src="https://github.com/user-attachments/assets/d4ef9ea8-ea29-40ec-8f0a-ab9b056ab2e8" />
+
+## Sending to Multiple Kins
+Want more than one Kin to know where you are? Set `KINDROID_AI_ID` to a comma-separated list of AI IDs:
+
+        KINDROID_AI_ID=ai_id_one,ai_id_two,ai_id_three
+
+- A single ID (no commas) works exactly as before — nothing else to change.
+- Every location update is sent to **all** listed Kins, using the same API key.
+- Spaces around IDs are ignored, so `id1, id2 , id3` is fine.
+- Delivery is independent per Kin: if one send fails, the rest still go through. The request only returns an error when *every* recipient fails.
+- The `/` status endpoint reports how many recipients are configured, e.g. `{"status":"ok","service":"kinlife360","mappings":2,"recipients":3}`.
 
 **Deploy on Railway**
 
@@ -32,8 +43,8 @@ Warning: This app tells your Kindroid where you are in real-time when you hit ce
 <img width="642" height="620" alt="KinLife360__automation_setup" src="https://github.com/user-attachments/assets/0c3af1a3-b74b-40de-9459-b98724112bda" />
 
 ## Customizations
-- Lines 107-108, edit message if desired, replace [user] w/ your name
-- Line 58, increase or decrease radius - default is 0.003; // ~300m radius
+- Lines 146-147, edit message if desired, replace [user] w/ your name
+- Line 73, increase or decrease radius - default is 0.003; // ~300m radius
 - Add homescreen button on phone - press to send quick update to kin.
          When current location isn't listed in environment variables: 
         📍**<Automated Update:** *[user] is in transit.>*
