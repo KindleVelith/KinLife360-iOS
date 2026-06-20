@@ -5,7 +5,7 @@ Warning: This app tells your Kindroid where you are in real-time when you hit ce
 
 ## Required
 - KINDROID_API_KEY - Your Kindroid API key
-- KINDROID_AI_ID - Kin's AI ID
+- KINDROID_AI_ID - Kin's AI ID. To update more than one Kin, provide a comma-separated list of AI IDs (e.g. `id1,id2,id3`). Each Kin receives the same location update.
 - Location mappings *(customizable but here's examples)*:
         HOME_LAT=
         HOME_LON=
